@@ -1,0 +1,2 @@
+data/enwiki-medium.txt
+set TFIDF Ranking: 2

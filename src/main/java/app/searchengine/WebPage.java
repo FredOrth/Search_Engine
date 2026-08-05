@@ -14,4 +14,15 @@ public class WebPage {
 		this.title = title;
 		this.keywords = keywords;
 	}
+
+	public List<String> getKeywords() {
+		return keywords;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+	public String getUrl() {
+		return url;
+	}
 }

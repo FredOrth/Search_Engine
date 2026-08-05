@@ -1,7 +1,7 @@
 /* jshint esversion: 6 */
 
 document.getElementById('searchbutton').onclick = () => {
-    fetch("/search?q=" + document.getElementById('searchbox').value)
+    fetch("/search?query=" + document.getElementById('searchbox').value)
     .then((response) => response.json())
     .then((data) => {
         document.getElementById("responsesize").innerHTML = 

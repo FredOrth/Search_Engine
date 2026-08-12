@@ -7,14 +7,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+
 @Repository
 public class FileLoadRepository implements WebPageRepository {
-	public List<WebPage> retrieveAll() throws IOException {
+	public Map<String, WebPage> retrieveAll() throws IOException {
 
+        Map<String, WebPage>  pageIndex = new HashMap<>();
 		List<WebPage> pages = new ArrayList<>();
 		var filename = Files.readString(Paths.get("config.txt")).strip();
 		try {
@@ -24,7 +23,9 @@ public class FileLoadRepository implements WebPageRepository {
 				if (lines.get(i).startsWith("*PAGE")) {
 					List<String> keywords = lines.subList(i+2,lastIndex);
 					WebPage page = new WebPage(lines.get(i+1), lines.get(i).substring(6,lines.get(i).toCharArray().length), keywords);
-					pages.add(page);
+					for (String keyword : keywords) {
+						pageIndex.put(keyword, page);
+					}
 					lastIndex = i;
 				}
 			}
@@ -32,7 +33,7 @@ public class FileLoadRepository implements WebPageRepository {
 			e.printStackTrace();
 		}
 		Collections.reverse(pages);
-		return 	pages;
+		return 	pageIndex;
 	}
 
 }

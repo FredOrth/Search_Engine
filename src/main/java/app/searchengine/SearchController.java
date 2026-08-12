@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/search")
@@ -19,7 +19,7 @@ public class SearchController {
     }
 
     @GetMapping
-    public List<WebPage>  search(@RequestParam String query) throws IOException {
+    public Set<WebPage> search(@RequestParam String query) throws IOException {
         return searchService.search(query);
     }
 
